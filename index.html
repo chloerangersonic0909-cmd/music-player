@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0a12">
+<title>Moonwave — Music Player</title>
+<style>
+:root{color-scheme:dark;--bg:#090910;--panel:#12121e;--panel2:#19192a;--text:#f4f3ff;--muted:#a3a2bb;--purple:#9b7cff;--cyan:#66e5ff;--line:#29283d}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 12% 0%,#29204c 0,transparent 38%),radial-gradient(ellipse at 95% 30%,#102b3d 0,transparent 34%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text)}
+button,input{font:inherit}button{cursor:pointer}.app{max-width:1100px;margin:auto;padding:26px 20px 42px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:32px}.brand{display:flex;align-items:center;gap:12px;font-size:1.25rem;font-weight:800;letter-spacing:.3px}.logo{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--purple),var(--cyan));color:#10101a;font-size:22px;box-shadow:0 0 30px #9b7cff30}.pill{font-size:.78rem;color:var(--cyan);border:1px solid #66e5ff40;background:#66e5ff0c;padding:8px 12px;border-radius:999px}
+.hero{margin:0 0 24px}.eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:2.5px;font-size:.72rem;font-weight:800}.hero h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.08;letter-spacing:-1.7px;margin:12px 0}.hero p{max-width:620px;color:var(--muted);line-height:1.7;margin:0}
+.layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:18px}.card{border:1px solid #ffffff12;border-radius:24px;background:linear-gradient(145deg,#181827eF,#10101bf5);box-shadow:0 18px 60px #0003;overflow:hidden}.player{padding:20px}.player-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.small-title{font-size:.9rem;font-weight:750}.status{font-size:.75rem;color:var(--muted)}.screen{aspect-ratio:16/9;background:#08080e;border-radius:16px;overflow:hidden;border:1px solid var(--line)}.screen iframe{display:block;width:100%;height:100%;border:0}.track-info{display:flex;align-items:center;gap:13px;margin:18px 0}.cover{width:58px;height:58px;flex-shrink:0;display:grid;place-items:center;border-radius:16px;background:linear-gradient(145deg,#6f48bd,#1d8297);font-size:27px}.track-info h2{font-size:1.06rem;margin:0 0 5px}.track-info p{font-size:.82rem;color:var(--muted);margin:0}.tag{margin-left:auto;color:var(--purple);font-size:.72rem;border:1px solid #9b7cff45;border-radius:999px;padding:6px 9px}.controls{display:flex;align-items:center;justify-content:center;gap:12px;margin:18px 0}.control{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#ffffff08;color:var(--text);font-size:18px}.control.main{width:54px;height:54px;background:linear-gradient(135deg,var(--purple),var(--cyan));color:#10101a;border:0;font-size:21px;box-shadow:0 7px 25px #9b7cff30}.note{font-size:.76rem;color:var(--muted);line-height:1.55;text-align:center}.side{padding:20px}.section-title{font-size:1rem;font-weight:800;margin:0 0 6px}.sub{font-size:.82rem;color:var(--muted);margin:0 0 17px;line-height:1.5}.search{display:flex;gap:8px}.search input{min-width:0;flex:1;background:#0a0a13;border:1px solid var(--line);color:var(--text);padding:12px 13px;border-radius:12px;outline:none}.search input:focus{border-color:var(--purple)}.action{border:0;border-radius:12px;padding:0 15px;color:#10101a;font-weight:800;background:linear-gradient(135deg,var(--purple),var(--cyan))}.hint{font-size:.73rem;color:var(--muted);margin:10px 2px 20px;line-height:1.5}.list{display:flex;flex-direction:column;gap:9px}.song{display:flex;align-items:center;gap:11px;padding:11px;border:1px solid transparent;border-radius:14px;background:#ffffff05;text-align:left;color:var(--text);width:100%}.song:hover,.song.active{background:#9b7cff12;border-color:#9b7cff50}.song-icon{display:grid;place-items:center;width:42px;height:42px;flex-shrink:0;border-radius:12px;background:linear-gradient(135deg,#322451,#164653)}.song-copy{min-width:0;flex:1}.song-copy strong{display:block;font-size:.85rem;margin-bottom:4px}.song-copy span{display:block;color:var(--muted);font-size:.75rem}.song-play{color:var(--cyan);font-size:17px}.footer{color:#77768f;text-align:center;font-size:.75rem;padding-top:22px}.toast{margin-top:12px;color:var(--cyan);font-size:.8rem;min-height:1.2em}
+@media(max-width:760px){.app{padding:18px 13px 30px}.top{margin-bottom:25px}.layout{grid-template-columns:1fr}.hero h1{letter-spacing:-1px}.player,.side{padding:15px}.pill{font-size:.7rem}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div class="brand"><div class="logo">♫</div><span>moonwave</span></div><div class="pill">✦ your little music space</div></header>
+<section class="hero"><div class="eyebrow">SLOW DOWN · BREATHE · LISTEN</div><h1>Find your quiet<br>in the music.</h1><p>พื้นที่เล็ก ๆ สำหรับเพลงชิล ๆ เปิดเพลงจาก YouTube ได้ในหน้าเว็บนี้ หรือวางลิงก์เพลงที่คุณอยากฟังได้เลย</p></section>
+<main class="layout">
+<section class="card player">
+<div class="player-head"><span class="small-title">Now playing</span><span class="status" id="status">พร้อมเล่นเพลง</span></div>
+<div class="screen"><iframe id="ytplayer" title="YouTube music player" src="https://www.youtube-nocookie.com/embed/8inJtTG_DuU?enablejsapi=1&origin=" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<div class="track-info"><div class="cover">♫</div><div style="min-width:0"><h2 id="trackTitle">Bloom</h2><p id="trackArtist">The Paper Kites · Chill / Indie Folk</p></div><span class="tag">CHILL</span></div>
+<div class="controls"><button class="control" id="restart" aria-label="Restart video" title="เริ่มใหม่">↺</button><button class="control main" id="play" aria-label="Play or pause" title="เล่นหรือหยุด">▶</button><button class="control" id="mute" aria-label="Mute" title="ปิดเสียง">♫</button></div>
+<p class="note">ใช้ปุ่มควบคุมในเครื่องเล่น YouTube เพื่อควบคุมการเล่นอย่างเต็มรูปแบบ<br>บางอุปกรณ์อาจต้องแตะเล่นเองก่อน เนื่องจากข้อจำกัด autoplay</p>
+</section>
+<aside class="card side">
+<h2 class="section-title">เลือกเพลงของคุณ</h2><p class="sub">เลือกเพลงแนะนำ หรือวางลิงก์ YouTube / รหัสวิดีโอ</p>
+<form class="search" id="loadForm"><input id="videoInput" aria-label="YouTube URL or video ID" placeholder="วางลิงก์ YouTube ที่นี่…" autocomplete="off"><button class="action" type="submit">เปิดเพลง</button></form>
+<p class="hint">รองรับลิงก์ youtube.com/watch, youtu.be และรหัสวิดีโอ YouTube</p>
+<div class="section-title" style="margin-bottom:12px">เพลงแนะนำ</div>
+<div class="list">
+<button class="song active" data-id="8inJtTG_DuU" data-title="Bloom" data-artist="The Paper Kites · Indie Folk"><span class="song-icon">🌙</span><span class="song-copy"><strong>Bloom</strong><span>The Paper Kites · Indie Folk</span></span><span class="song-play">▶</span></button>
+<button class="song" data-id="jfKfPfyJRdk" data-title="lofi hip hop radio" data-artist="Chill beats · Live stream"><span class="song-icon">☁️</span><span class="song-copy"><strong>lofi hip hop radio</strong><span>Chill beats · Live stream</span></span><span class="song-play">▶</span></button>
+<button class="song" data-id="DWcJFNfaw9c" data-title="Relaxing music" data-artist="Ambient · Relax"><span class="song-icon">🌌</span><span class="song-copy"><strong>Relaxing music</strong><span>Ambient · Relax</span></span><span class="song-play">▶</span></button>
+</div><div class="toast" id="message" role="status"></div>
+</aside>
+</main><footer class="footer">Moonwave · Made for slow moments ✦</footer>
+</div>
+<script>
+const frame=document.getElementById('ytplayer'),titleEl=document.getElementById('trackTitle'),artistEl=document.getElementById('trackArtist'),statusEl=document.getElementById('status'),message=document.getElementById('message');
+const initialOrigin=location.origin;
+function makeUrl(id,auto=false){return 'https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?enablejsapi=1&playsinline=1&rel=0&autoplay='+(auto?'1':'0')+'&origin='+encodeURIComponent(initialOrigin)}
+function loadSong(id,title='YouTube track',artist='YouTube',auto=true){frame.src=makeUrl(id,auto);titleEl.textContent=title;artistEl.textContent=artist;statusEl.textContent='กำลังโหลดเพลง…';document.querySelectorAll('.song').forEach(b=>b.classList.toggle('active',b.dataset.id===id));message.textContent='';}
+function extractId(value){const v=value.trim();if(/^[a-zA-Z0-9_-]{11}$/.test(v))return v;try{const u=new URL(v);if(u.hostname==='youtu.be'||u.hostname.endsWith('.youtu.be'))return u.pathname.split('/').filter(Boolean)[0]||null;if(u.hostname.includes('youtube.com')||u.hostname.includes('youtube-nocookie.com')){if(u.searchParams.get('v'))return u.searchParams.get('v');const p=u.pathname.split('/').filter(Boolean);const i=p.findIndex(x=>['embed','shorts','live'].includes(x));if(i>=0)return p[i+1]||null;}}catch(e){}return null;}
+document.querySelectorAll('.song').forEach(b=>b.addEventListener('click',()=>loadSong(b.dataset.id,b.dataset.title,b.dataset.artist,true)));
+document.getElementById('loadForm').addEventListener('submit',e=>{e.preventDefault();const raw=document.getElementById('videoInput').value;const id=extractId(raw);if(!id){message.textContent='ลิงก์ไม่ถูกต้อง ลองวาง URL หรือรหัสวิดีโอ YouTube 11 ตัวอักษร';return;}loadSong(id,'YouTube track','เพลงจากลิงก์ของคุณ',true);document.getElementById('videoInput').value='';});
+function command(func,args=[]){frame.contentWindow.postMessage(JSON.stringify({event:'command',func,args}), 'https://www.youtube-nocookie.com');}
+document.getElementById('play').addEventListener('click',()=>{command('playVideo');statusEl.textContent='ส่งคำสั่งเล่นแล้ว';});
+document.getElementById('mute').addEventListener('click',()=>{command('mute');statusEl.textContent='ส่งคำสั่งปิดเสียงแล้ว';});
+document.getElementById('restart').addEventListener('click',()=>{command('seekTo',[0,true]);command('playVideo');statusEl.textContent='เริ่มเพลงใหม่แล้ว';});
+window.addEventListener('message',e=>{if(e.origin!=='https://www.youtube-nocookie.com')return;try{const d=JSON.parse(e.data);if(d.event==='onReady')statusEl.textContent='พร้อมเล่นเพลง';if(d.info&&typeof d.info.playerState==='number'){statusEl.textContent=d.info.playerState===1?'กำลังเล่น':d.info.playerState===2?'หยุดชั่วคราว':d.info.playerState===0?'เล่นจบแล้ว':'พร้อมเล่นเพลง';}}catch(_){}});
+</script>
+</body>
+</html>
